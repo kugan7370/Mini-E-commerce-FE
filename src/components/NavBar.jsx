@@ -2,8 +2,11 @@ import Menu from "./Menu";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
+import CartModal from "./CardModel";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isCartOpen, setIsCartOpen] = useState(true);
   return (
     <div className="fixed top-0 left-0 right-0 h-20 px-4 md:px-8 lg:px-16 xl:px-32 bg-white shadow-md z-50">
       {/* MOBILE */}
@@ -35,6 +38,7 @@ const Navbar = () => {
           <NavIcons />
         </div>
       </div>
+      {isCartOpen && <CartModal />}
     </div>
   );
 };
