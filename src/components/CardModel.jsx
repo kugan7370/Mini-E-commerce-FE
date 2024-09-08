@@ -1,121 +1,155 @@
 import { useState } from "react";
 
-const CartModal = () => {
-  // Example cart data for demonstration purposes
-  const [cart, setCart] = useState({
-    lineItems: [
-      {
-        _id: "1",
-        image:
-          "https://images.pexels.com/photos/19036832/pexels-photo-19036832/free-photo-of-mountain-reflection-in-lake.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
-        productName: { original: "Product Name" },
-        quantity: 2,
-        price: { amount: 29.99 },
-        availability: { status: "In Stock" },
+const CartModal = ({ closeCart }) => {
+  const cart = [
+    {
+      _id: "1",
+      productName: {
+        original: "Product 1",
       },
-    ],
-    subtotal: { amount: 29.99 },
-  });
+      image: "https://via.placeholder.com/150",
+      price: {
+        amount: 100,
+      },
+      quantity: 1,
+      availability: {
+        status: "In stock",
+      },
+    },
+    {
+      _id: "2",
+      productName: {
+        original: "Product 2",
+      },
+      image: "https://via.placeholder.com/150",
+      price: {
+        amount: 200,
+      },
+      quantity: 2,
+      availability: {
+        status: "In stock",
+      },
+    },
+    {
+      _id: "3",
+      productName: {
+        original: "Product 2",
+      },
+      image: "https://via.placeholder.com/150",
+      price: {
+        amount: 200,
+      },
+      quantity: 2,
+      availability: {
+        status: "In stock",
+      },
+    },
+  ];
 
   const [isLoading, setIsLoading] = useState(false);
 
   const removeItem = (id) => {
     setIsLoading(true);
-    // Simulate removing item
-    setCart((prevCart) => ({
-      ...prevCart,
-      lineItems: prevCart.lineItems.filter((item) => item._id !== id),
-    }));
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
   };
 
   const handleCheckout = () => {
-    // Simulate checkout process
     alert("Proceeding to checkout");
   };
 
   return (
-    <div className="lg:w-max w-full absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white top-20  right-0 flex flex-col gap-6 z-20">
-      {!cart.lineItems.length ? (
-        <div>Cart is Empty</div>
-      ) : (
-        <>
-          <h2 className="text-xl">Shopping Cart</h2>
-          {/* LIST */}
-          <div className="flex flex-col gap-8">
-            {/* ITEM */}
-            {cart.lineItems.map((item) => (
-              <div className="flex gap-4" key={item._id}>
-                {item.image && (
-                  <img
-                    src={item.image}
-                    alt=""
-                    width={72}
-                    height={96}
-                    className="object-cover rounded-md"
-                  />
-                )}
-                <div className="flex flex-col justify-between w-full">
-                  {/* TOP */}
-                  <div>
-                    {/* TITLE */}
-                    <div className="flex items-center justify-between gap-8">
-                      <h3 className="font-semibold">
-                        {item.productName.original}
-                      </h3>
-                      <div className="p-1 bg-gray-50 rounded-sm flex items-center gap-2">
-                        {item.quantity > 1 && (
-                          <div className="text-xs text-green-500">
-                            {item.quantity} x{" "}
-                          </div>
-                        )}
-                        ${item.price.amount}
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-end items-start z-50">
+      <div
+        className="bg-white p-6 rounded-lg shadow-lg relative w-80"
+        style={{
+          marginTop: "80px",
+          maxHeight: "calc(100vh - 60px)",
+          overflowY: "auto",
+        }} // Adjust top based on navbar height
+      >
+        <button onClick={closeCart} className="absolute top-2 right-2 text-xl">
+          &times;
+        </button>
+        <h2 className="text-lg font-bold mb-4">Shopping Cart</h2>
+
+        {!cart.length ? (
+          <div>Cart is Empty</div>
+        ) : (
+          <>
+            <div className="flex flex-col gap-4 overflow-y-auto max-h-60 px-4">
+              {cart.map((item) => (
+                <div className="flex gap-4 border-b py-2" key={item._id}>
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt={item.productName.original}
+                      width={72}
+                      height={96}
+                      className="object-cover rounded-md"
+                    />
+                  )}
+                  <div className="flex flex-col justify-between w-full">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-semibold">
+                          {item.productName.original}
+                        </h3>
+                        <div className="bg-gray-100 p-1 rounded-sm flex items-center gap-2">
+                          {item.quantity > 1 && (
+                            <div className="text-xs text-green-500">
+                              {item.quantity} x
+                            </div>
+                          )}
+                          ${item.price.amount}
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {item.availability.status}
                       </div>
                     </div>
-                    {/* DESC */}
-                    <div className="text-sm text-gray-500">
-                      {item.availability.status}
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">
+                        Qty. {item.quantity}
+                      </span>
+                      <button
+                        className="text-blue-500 disabled:opacity-50"
+                        disabled={isLoading}
+                        onClick={() => removeItem(item._id)}
+                      >
+                        {isLoading ? "Removing..." : "Remove"}
+                      </button>
                     </div>
                   </div>
-                  {/* BOTTOM */}
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Qty. {item.quantity}</span>
-                    <span
-                      className="text-blue-500"
-                      style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
-                      onClick={() => removeItem(item._id)}
-                    >
-                      Remove
-                    </span>
-                  </div>
                 </div>
+              ))}
+            </div>
+
+            <div className="mt-4">
+              <div className="flex items-center justify-between font-semibold">
+                <span>Subtotal</span>
+                <span>${10}</span>
               </div>
-            ))}
-          </div>
-          {/* BOTTOM */}
-          <div>
-            <div className="flex items-center justify-between font-semibold">
-              <span>Subtotal</span>
-              <span>${cart.subtotal.amount}</span>
+              <p className="text-gray-500 text-sm mt-2 mb-4">
+                Shipping and taxes calculated at checkout.
+              </p>
+              <div className="flex justify-between text-sm">
+                <button className="rounded-md py-2 px-4 ring-1 ring-gray-300">
+                  View Cart
+                </button>
+                <button
+                  className="rounded-md py-2 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75"
+                  disabled={isLoading}
+                  onClick={handleCheckout}
+                >
+                  {isLoading ? "Processing..." : "Checkout"}
+                </button>
+              </div>
             </div>
-            <p className="text-gray-500 text-sm mt-2 mb-4">
-              Shipping and taxes calculated at checkout.
-            </p>
-            <div className="flex justify-between text-sm">
-              <button className="rounded-md py-3 px-4 ring-1 ring-gray-300">
-                View Cart
-              </button>
-              <button
-                className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75"
-                disabled={isLoading}
-                onClick={handleCheckout}
-              >
-                Checkout
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 };

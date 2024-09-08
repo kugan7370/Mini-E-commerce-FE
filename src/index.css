@@ -9,3 +9,42 @@
 .scrollbar-hide{
   scrollbar-width: none;
 }
+
+/* Scrollbar track */
+::-webkit-scrollbar {
+  width: 6px;  /* Adjust this value to make the scrollbar thinner */
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);  /* Scrollbar color */
+  border-radius: 10px;  /* Makes the scrollbar rounded */
+}
+
+/* Scrollbar thumb hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.7);  /* Darken color on hover */
+}
+
+
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/fonts/Satoshi-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi-Medium';
+  src: url('./assets/fonts/Satoshi-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi-Bold';
+  src: url('./assets/fonts/Satoshi-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
