@@ -1,3 +1,4 @@
+// NavIcons.jsx
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,13 +13,20 @@ const NavIcons = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const isAuthenticated = useSelector((state) => !!state.user.token);
   const userData = useSelector((state) => state.user.user);
+
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const handleLogout = async () => {
     setIsLoading(true); // Show loading state when logging out
     try {
-      isProfileOpen && setIsProfileOpen(false); // Close profile modal if open
+      if (isProfileOpen) setIsProfileOpen(false); // Close profile modal if open
       dispatch(logoutUser());
       toast.success("Logged out successfully!");
       navigate("/signin");
@@ -35,7 +43,7 @@ const NavIcons = () => {
       {isAuthenticated ? (
         <img
           src="/profile.png"
-          alt=""
+          alt="Profile"
           width={22}
           height={22}
           className="cursor-pointer"
@@ -45,7 +53,7 @@ const NavIcons = () => {
         <Link to="/signin">
           <img
             src="/profile.png"
-            alt=""
+            alt="Profile"
             width={22}
             height={22}
             className="cursor-pointer"
@@ -78,13 +86,20 @@ const NavIcons = () => {
         onClick={() => setIsCartOpen((prev) => !prev)}
       >
         <img src="/cart.png" alt="Cart" width={22} height={22} />
-        <div className="absolute -top-4 -right-4 w-6 h-6 bg-Primary rounded-full text-white text-sm flex items-center justify-center">
-          1
-        </div>
+        {totalItems > 0 && (
+          <div className="absolute -top-2 -right-2 w-5 h-5 bg-Primary rounded-full text-white text-xs flex items-center justify-center">
+            {totalItems}
+          </div>
+        )}
       </div>
 
       {/* Cart Modal */}
-      {isCartOpen && <CartModal closeCart={() => setIsCartOpen(false)} />}
+      {isCartOpen && (
+        <CartModal
+          closeCart={() => setIsCartOpen(false)}
+          cartItems={cartItems}
+        />
+      )}
     </div>
   );
 };

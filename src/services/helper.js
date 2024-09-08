@@ -18,4 +18,25 @@ const clearStorage = async () => {
   localStorage.clear();
 };
 
-export { getToken, setToken, getUser, setUser, clearStorage };
+const getCartFromStorage = () => {
+  return JSON.parse(localStorage.getItem("cart"));
+};
+
+const setCartToStorage = (cart) => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+const clearCartStorage = () => {
+  localStorage.removeItem("cart");
+};
+
+export {
+  getToken,
+  setToken,
+  getUser,
+  setUser,
+  clearStorage,
+  getCartFromStorage,
+  setCartToStorage,
+  clearCartStorage,
+};
