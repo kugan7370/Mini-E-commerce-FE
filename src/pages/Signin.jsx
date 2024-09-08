@@ -66,7 +66,7 @@ function SignIn() {
 
           <button
             type="submit"
-            className="p-3 rounded-sm text-center bg-lama mt-5 w-full"
+            className="p-3 rounded-sm text-center bg-Primary mt-5 w-full"
             disabled={loading}
           >
             <p className="font-Satoshi-Medium text-white">Sign In</p>

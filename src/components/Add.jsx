@@ -47,7 +47,7 @@ const Add = ({ productId, variantId, stockNumber }) => {
         <button
           onClick={() => console.log("Added to cart")}
           disabled={stockNumber < 1}
-          className="w-36 text-sm rounded-3xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:ring-0 disabled:text-white disabled:ring-none"
+          className="w-36 text-sm rounded-3xl ring-1 ring-Primary text-Primary py-2 px-4 hover:bg-Primary hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:ring-0 disabled:text-white disabled:ring-none"
         >
           Add to Cart
         </button>

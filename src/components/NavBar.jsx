@@ -12,7 +12,7 @@ const Navbar = () => {
       {/* MOBILE */}
       <div className="h-full flex items-center justify-between md:hidden">
         <Link to="/">
-          <div className="text-2xl tracking-wide">Logo</div>
+          <div className="text-2xl tracking-wide">E-Shop</div>
         </Link>
         <Menu />
       </div>
@@ -21,11 +21,10 @@ const Navbar = () => {
         {/* LEFT */}
         <div className="w-1/3 xl:w-1/2 flex items-center gap-12">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="" width={24} height={24} />
-            <div className="text-2xl tracking-wide">Logo</div>
+            <div className="text-2xl tracking-wide">E-Shop</div>
           </Link>
           <div className="hidden xl:flex gap-4">
-            <Link to="/">Homepage</Link>
+            <Link to="/">Home</Link>
             <Link to="/">Shop</Link>
             <Link to="/">Deals</Link>
             <Link to="/">About</Link>

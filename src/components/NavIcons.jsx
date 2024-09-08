@@ -78,7 +78,7 @@ const NavIcons = () => {
         onClick={() => setIsCartOpen((prev) => !prev)}
       >
         <img src="/cart.png" alt="Cart" width={22} height={22} />
-        <div className="absolute -top-4 -right-4 w-6 h-6 bg-lama rounded-full text-white text-sm flex items-center justify-center">
+        <div className="absolute -top-4 -right-4 w-6 h-6 bg-Primary rounded-full text-white text-sm flex items-center justify-center">
           1
         </div>
       </div>

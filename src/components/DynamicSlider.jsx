@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 const sliderSettings = {
@@ -58,17 +59,21 @@ function DynamicSlider({ datas }) {
     <div className="product-slider">
       <Slider {...sliderSettings}>
         {datas.map((item) => (
-          <div key={item._id} className="slide-item text-center  px-4">
+          <Link
+            to={`/category/${item._id}`}
+            key={item._id}
+            className="slide-item text-center  px-4"
+          >
             <img
               src={
-                item.image ||
+                item.images[0]?.url ||
                 "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=800"
               }
               alt={item.name}
-              className="object-cover w-full h-64"
+              className="object-cover w-full cursor-pointer h-64"
             />
             <h2 className="mt-4 text-lg font-medium">{item.name}</h2>
-          </div>
+          </Link>
         ))}
       </Slider>
     </div>

@@ -175,7 +175,7 @@ function Cart() {
       {/* Checkout Button */}
       <div className="w-full mt-10 flex justify-end">
         <Link to="/userOrderInfo">
-          <div className="p-3 rounded-sm  bg-lama text-center cursor-pointer">
+          <div className="p-3 rounded-sm  bg-Primary text-center cursor-pointer">
             <p className="text-white font-medium">Place Order</p>
           </div>
         </Link>

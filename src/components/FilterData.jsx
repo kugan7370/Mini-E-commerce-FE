@@ -1,4 +1,4 @@
-const Filter = () => {
+const FilterData = () => {
   const handleFilterChange = (e) => {};
 
   return (
@@ -61,4 +61,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default FilterData;

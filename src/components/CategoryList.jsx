@@ -53,10 +53,10 @@ const staticCategories = [
   },
 ];
 
-const CategoryList = () => {
+const CategoryList = ({ categories }) => {
   return (
     <div className="px-[36px]">
-      <DynamicSlider datas={staticCategories} />
+      <DynamicSlider datas={categories} />
     </div>
   );
 };
