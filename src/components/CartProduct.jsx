@@ -36,7 +36,7 @@ function CartProduct() {
         {/* details */}
         <div className="w-full col-span-3">
           <div className="flex-col gap-4 justify-center items-center">
-            <p>Name: {cartItem.name}</p>
+            <p>{cartItem.name}</p>
           </div>
         </div>
 
