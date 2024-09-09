@@ -1,32 +1,29 @@
-import { Suspense, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Skeleton from "../components/Skeleton";
 import ProductList from "../components/ProductList";
 import FilterData from "../components/FilterData";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../api/Product";
+import { getFilteredProducts } from "../api/Product";
 
 const Category = () => {
   const { id: categoryId } = useParams();
-  console.log("Category ID:", categoryId);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filters, setFilters] = useState({
+    category: categoryId,
+  });
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        // Fetch all products from the API
-        const fetchedProducts = await getProducts();
-        console.log("Fetched products:", fetchedProducts);
+      setLoading(true);
+      setError(null);
 
-        // Filter products based on the category ID
-        const filteredProducts = fetchedProducts.filter(
-          (product) => product.category == categoryId
-        );
-        console.log("Filtered products:", filteredProducts);
-        setProducts(filteredProducts);
+      try {
+        const fetchedProducts = await getFilteredProducts(filters);
+        console.log("Fetched Products:", fetchedProducts);
+        setProducts(fetchedProducts);
       } catch (error) {
-        console.error("Error fetching products:", error);
         setError("Failed to load products.");
       } finally {
         setLoading(false);
@@ -34,14 +31,21 @@ const Category = () => {
     };
 
     fetchProducts();
-  }, [categoryId]);
+  }, [filters, categoryId]);
+
+  const handleFilterChange = (newFilters) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ...newFilters,
+    }));
+  };
 
   if (loading) {
     return <Skeleton />;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="text-center mt-12 text-red-600">{error}</div>;
   }
 
   return (
@@ -63,13 +67,17 @@ const Category = () => {
       </div>
 
       {/* Filter Section */}
-      <FilterData />
+      <FilterData onFilterChange={handleFilterChange} />
 
       {/* Products Section */}
       <h1 className="mt-12 text-xl font-semibold">Products in this Category</h1>
-      <Suspense fallback={<Skeleton />}>
+      {products.length > 0 ? (
         <ProductList products={products} />
-      </Suspense>
+      ) : (
+        <div className="text-center mt-12 text-gray-600">
+          No products found in this category.
+        </div>
+      )}
     </div>
   );
 };

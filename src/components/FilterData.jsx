@@ -1,60 +1,46 @@
-const FilterData = () => {
-  const handleFilterChange = (e) => {};
+import React, { useEffect, useState } from "react";
+import { getCategories } from "../api/Category";
+
+const FilterData = ({ onFilterChange }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categories = await getCategories();
+        setCategories(categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  // Handle filter changes
+  const handleFilterChange = (event) => {
+    let target = event.target || {};
+    let { name, value } = target;
+    let filterValue = value;
+
+    onFilterChange({ [name]: filterValue });
+  };
 
   return (
     <div className="mt-12 flex justify-between">
       <div className="flex gap-6 flex-wrap">
+        {/* Category Filter */}
         <select
-          name="type"
+          name="category"
           className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
           onChange={handleFilterChange}
         >
-          <option>Type</option>
-          <option value="physical">Physical</option>
-          <option value="digital">Digital</option>
-        </select>
-        <input
-          type="text"
-          name="min"
-          placeholder="min price"
-          className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-400"
-          onChange={handleFilterChange}
-        />
-        <input
-          type="text"
-          name="max"
-          placeholder="max price"
-          className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-400"
-          onChange={handleFilterChange}
-        />
-        {/* TODO: Filter Categories */}
-        <select
-          name="cat"
-          className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
-          onChange={handleFilterChange}
-        >
-          <option>Category</option>
-          <option value="">New Arrival</option>
-          <option value="">Popular</option>
-        </select>
-        <select
-          name=""
-          className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
-        >
-          <option>All Filters</option>
-        </select>
-      </div>
-      <div>
-        <select
-          name="sort"
-          className="py-2 px-4 rounded-2xl text-xs font-medium bg-white ring-1 ring-gray-400"
-          onChange={handleFilterChange}
-        >
-          <option>Sort By</option>
-          <option value="asc price">Price (low to high)</option>
-          <option value="desc price">Price (high to low)</option>
-          <option value="asc lastUpdated">Newest</option>
-          <option value="desc lastUpdated">Oldest</option>
+          <option value="">Category</option>
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
         </select>
       </div>
     </div>

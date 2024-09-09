@@ -61,13 +61,7 @@ const Details = () => {
         <div className="h-[2px] bg-gray-100" />
 
         {/* Add to Cart */}
-        <Add
-          productId={product._id}
-          variantId={
-            product.variantId || "00000000-0000-0000-0000-000000000000"
-          }
-          stockNumber={product.stock || 0}
-        />
+        <Add product={product} />
 
         <div className="h-[2px] bg-gray-100" />
         <div className="h-[2px] bg-gray-100" />

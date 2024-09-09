@@ -3,6 +3,7 @@ import {
   privateRequest,
   publicRequest,
 } from "../services/AxiosInstance";
+import qs from "qs";
 
 const getProducts = async (URL = "/product") => {
   try {
@@ -11,6 +12,20 @@ const getProducts = async (URL = "/product") => {
 
     const products = await publicRequest(url, method);
     return products.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
+};
+
+const getFilteredProducts = async (filters = {}) => {
+  try {
+    const queryString = qs.stringify(filters, { addQueryPrefix: true });
+
+    const url = `/product${queryString}`;
+    const method = "GET";
+    const response = await publicRequest(url, method);
+    return response.data;
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error;
@@ -65,4 +80,11 @@ const deleteProduct = async (productId) => {
   }
 };
 
-export { getProducts, getProduct, addProduct, updateProduct, deleteProduct };
+export {
+  getProducts,
+  getProduct,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  getFilteredProducts,
+};

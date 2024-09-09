@@ -24,9 +24,9 @@ const NavIcons = () => {
   );
 
   const handleLogout = async () => {
-    setIsLoading(true); // Show loading state when logging out
+    setIsLoading(true);
     try {
-      if (isProfileOpen) setIsProfileOpen(false); // Close profile modal if open
+      if (isProfileOpen) setIsProfileOpen(false);
       dispatch(logoutUser());
       toast.success("Logged out successfully!");
       navigate("/signin");
@@ -34,30 +34,27 @@ const NavIcons = () => {
       toast.error("Error logging out. Please try again.");
       console.error("Logout error:", error);
     } finally {
-      setIsLoading(false); // Remove loading state
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="flex items-center gap-4 xl:gap-6 relative">
       {isAuthenticated ? (
-        <img
-          src="/profile.png"
-          alt="Profile"
-          width={22}
-          height={22}
+        // user name
+        <div
           className="cursor-pointer"
           onClick={() => setIsProfileOpen((prev) => !prev)}
-        />
+        >
+          <span className="hidden xl:inline-block text-sm font-medium uppercase">
+            {userData.username}
+          </span>
+        </div>
       ) : (
         <Link to="/signin">
-          <img
-            src="/profile.png"
-            alt="Profile"
-            width={22}
-            height={22}
-            className="cursor-pointer"
-          />
+          <button className="text-sm font-medium text-gray-600 uppercase">
+            Sign In
+          </button>
         </Link>
       )}
 
