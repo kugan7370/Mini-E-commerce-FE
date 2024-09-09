@@ -1,70 +1,113 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Mini eCommerce Vendor Portal
 
-## Available Scripts
+The mini eCommerce web application facilitates the management of products, vendors, and customers. It features product management, browsing, search functionality, and a vendor portal. Built using the MERN stack, Redux for state management, and MongoDB Atlas for cloud data storage, this application provides a complete solution for managing an online store.
 
-In the project directory, you can run:
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Product Listing Page
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    Responsive Display
+    Filtering Options
+    Search Functionalit
 
-### `npm test`
+Product Details Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Detailed Information
+    information and description.
+    Add to Cart
 
-### `npm run build`
+Shopping Cart
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Cart Management
+    Dynamic Pricing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Checkout Form
 
-### `npm run eject`
+    User Information
+    Form Validation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Responsive Design
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Cross-Device Compatibility
+## Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    Node.js
+    Express.js
+    MongoDB (using MongoDB Atlas for cloud storage)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Frontend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    React.js
+    Redux for state management
+    Axios for API requests
+    Tailwind
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🔗 Links
 
-### Analyzing the Bundle Size
+Front End
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    https://github.com/kugan7370/Mini-E-commerce-FE
 
-### Making a Progressive Web App
+Back End    
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    https://github.com/kugan7370/Mini-E-commerce-BE
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    
+## Environment Variables
 
-### `npm run build` fails to minify
+Front End
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    EXPO_PUBLIC_BASE_URL
+
+Back End
+
+    PORT
+
+    Mongo_Connect
+
+    JWT_SECRET
+
+    JWT_EXPIRES_IN
+
+    CLOUD_NAME
+
+    API_KEY
+
+    API_SECRET
+
+
+## Run Locally
+
+Front End
+
+    npm start
+
+Back End
+
+    npm start
+
+
+## Screen Shots
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/cdcbe016-d1fc-472f-92f3-74d15c4bdd18" alt="Screenshot 1" width="300"/>
+  <img src="https://github.com/user-attachments/assets/3098cf0b-0c29-471b-9859-4732fd11fa2a" alt="Screenshot 2" width="300"/>
+  <img src="https://github.com/user-attachments/assets/2e2d6d73-87a4-400f-8653-8320705aa928" alt="Screenshot 3" width="300"/>
+  <img src="https://github.com/user-attachments/assets/5a921453-ca12-4edc-a22e-414cf05e1936" alt="Screenshot 4" width="300"/>
+  <img src="https://github.com/user-attachments/assets/9f47a4c1-f1e1-43bc-9e01-ad62c1e7d874" alt="Screenshot 5" width="300"/>
+  <img src="https://github.com/user-attachments/assets/7e333ba5-b02e-44d2-9300-352a99810cab" alt="Screenshot 6" width="300"/>
+</div>
+
+
+
+
